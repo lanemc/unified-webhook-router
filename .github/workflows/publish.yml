@@ -1,0 +1,47 @@
+name: Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: |
+          cd typescript
+          npm ci
+
+      - name: Run tests
+        run: |
+          cd typescript
+          npm test
+
+      - name: Run type check
+        run: |
+          cd typescript
+          npm run build:tsc
+
+      - name: Build package
+        run: |
+          cd typescript
+          npm run build
+
+      - name: Publish to NPM
+        run: |
+          cd typescript
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_SAAS_DEV_KIT }}
