@@ -1,0 +1,39 @@
+{
+  "name": "unified-webhook-router",
+  "version": "1.0.0",
+  "description": "A unified webhook router for handling webhooks from multiple providers (Stripe, GitHub, Slack, etc.)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "webhook",
+    "stripe",
+    "github",
+    "slack",
+    "twilio",
+    "square",
+    "router",
+    "verification"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/jest": "^29.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
